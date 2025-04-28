@@ -13,7 +13,8 @@ Author: Alina Matchette
  - dependencies: none
  - version
 	1.0 - Original
-  	1.1 - drasically reduce compute time by itterating over targets array rather than rows array in output
+	1.1 - drasically reduce compute time by itterating over targets array rather than rows array in output
+	1.2 - reduce compute time further by eliminating for loop in output generation
 #}
 
 
@@ -32,19 +33,14 @@ magna = sqrt(vectx.^2+vecty.^2); #creates array of magnitudes of queen vectors
 
 anglv = acosd(vecty./(magna.*(sqrt(1)))); #finds angle between vector [0 1] and target vectors, isolating target coordinates, at 45 degree angles
 anglerem = rem(anglv,45);
-targets = find(anglerem <=.001); #.001 used as comparison value due to 45/45 remainder not being zero, but 7E-15
+target = find(anglerem <=.001); #.001 used as comparison value due to 45/45 remainder not being zero, but 7E-15
 
 
+tarind = sub2ind(size(localBoard),row(target),col(target)); #creating index of locabl board based on targets and then setting targets to 0
+localBoard(tarind) = 0;
 
 
-for i=1 :length(targets) #goes through all target values and uses them to update the board matrix
-
-  localBoard(row(targets(i)),col(targets(i))) = 0;
-
- end
-
-
- localBoard(posit(1),posit(2)) = 1; #unisolate current position queen so that it may be used in output, which requires queens to be specified as a 1
+localBoard(posit(1),posit(2)) = 1; #unisolate current position queen so that it may be used in output, which requires queens to be specified as a 1
 
 queenElim = localBoard; #returning locally stored board to calling script
 
