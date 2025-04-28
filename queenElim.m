@@ -13,10 +13,12 @@ Author: Alina Matchette
  - dependencies: none
  - version
 	1.0 - Original
+  1.1 - drasically reduce compute time by itterating over targets array rather than rows array in output
 #}
 
 
 function queenElim = queenElim (coord, board)
+
 localBoard = board; #casting global input to local variables as safety measure, generally redundant
 posit = coord; #posit, the current positon of the program in board matrix
 
@@ -32,13 +34,15 @@ anglv = acosd(vecty./(magna.*(sqrt(1)))); #finds angle between vector [0 1] and 
 anglerem = rem(anglv,45);
 targets = find(anglerem <=.001); #.001 used as comparison value due to 45/45 remainder not being zero, but 7E-15
 
-for i=1 :length(row) #checks for all of the isolated values, if they are isolated as targets, removed them from the locally stored board
- if ismember(i,targets)
 
-  localBoard(row(i),col(i)) = 0;
 
-  end
+
+for i=1 :length(targets) #checks for all of the isolated values, if they are isolated as targets, removed them from the locally stored board
+
+  localBoard(row(targets(i)),col(targets(i))) = 0;
+
  end
+
 
  localBoard(posit(1),posit(2)) = 1; #unisolate current position queen so that it may be used in output, which requires queens to be specified as a 1
 
