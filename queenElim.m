@@ -13,7 +13,7 @@ Author: Alina Matchette
  - dependencies: none
  - version
 	1.0 - Original
-  1.1 - drasically reduce compute time by itterating over targets array rather than rows array in output
+  	1.1 - drasically reduce compute time by itterating over targets array rather than rows array in output
 #}
 
 
