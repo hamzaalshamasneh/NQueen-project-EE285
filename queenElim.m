@@ -37,7 +37,7 @@ targets = find(anglerem <=.001); #.001 used as comparison value due to 45/45 rem
 
 
 
-for i=1 :length(targets) #checks for all of the isolated values, if they are isolated as targets, removed them from the locally stored board
+for i=1 :length(targets) #goes through all target values and uses them to update the board matrix
 
   localBoard(row(targets(i)),col(targets(i))) = 0;
 
