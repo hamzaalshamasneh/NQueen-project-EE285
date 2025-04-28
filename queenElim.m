@@ -7,6 +7,7 @@
  - requries inputs
     - cord: 2 position cordiante array of evaluation position, the queen from the perspective of which the removal of queens from the board using subtractive methods is applied
     - board: the current board state as an NxN matrix
+    - both inputs require being valid coordinates and board matricies, must have min value 1,1 and max n,n
  - outputs
     - returns updated matrix when called, after subtractive method is applied
  - dependancies: none
@@ -14,9 +15,9 @@
     1.0 - Original
 #}
 
-function queenElim = queenElim (cord, board)
+function queenElim = queenElim (coord, board)
 localBoard = board; #casting gloabal input to local veriables as safety measure, generally redundant
-posit = cord; #posit, the current positon of the program in board matrix
+posit = coord; #posit, the current positon of the program in board matrix
 
 localBoard(posit(1),posit(2)) = 2; #isolating current position from anylisis of non target
 [row,col] = find(localBoard ==1); #isolating target values
