@@ -5,7 +5,7 @@ Author: Alina Matchette
 
  USAGE: for use in the N Queen problem script in the github repo <https://github.com/Alina-Seo/NQueen-project-EE285/tree/main>
  - requires inputs
-	- cord: 2 position coordinate array of evaluation position, the queen from the perspective of which the removal of queens from the board using subtractive methods is applied
+	- coord: 2 position coordinate array of evaluation position, the queen from the perspective of which the removal of queens from the board using subtractive methods is applied
 	- board: the current board state as an NxN matrix
 	- both inputs require being valid coordinates and board matrices, must have min value 1,1 and max n,n
  - outputs
