@@ -3,7 +3,7 @@
 Author: Alina Matchette
  Created: 2025-04-27
 
- USAGE: for use in the N Queen problem script in the github repo <>
+ USAGE: for use in the N Queen problem script in the github repo <https://github.com/Alina-Seo/NQueen-project-EE285/tree/main>
  - requires inputs
 	- cord: 2 position coordinate array of evaluation position, the queen from the perspective of which the removal of queens from the board using subtractive methods is applied
 	- board: the current board state as an NxN matrix
