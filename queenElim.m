@@ -36,7 +36,7 @@ anglerem = rem(anglv,45);
 target = find(anglerem <=.001); #.001 used as comparison value due to 45/45 remainder not being zero, but 7E-15
 
 
-tarind = sub2ind(size(localBoard),row(target),col(target)); #creating index of locabl board based on targets and then setting targets to 0
+tarind = sub2ind(size(localBoard),row(target),col(target)); #creating index of local board based on targets and then setting targets to 0
 localBoard(tarind) = 0;
 
 
