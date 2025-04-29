@@ -1,0 +1,43 @@
+.center {
+	text-align: center;
+}
+
+#personalinfo {
+	offset-position: left 10px;
+}
+
+.body {
+	margin: 35px;
+}
+
+html {
+	background-color: #FFFFFF;
+	border: 15px;
+	border-color: rgb(106, 112, 106);
+	border-style: solid;
+	margin: 0;
+	height: auto;
+}
+
+.centerimage {
+		max-width:400px;
+		max-height:600px;
+}
+
+.centerimage {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}
+
+#indextitle {
+	font-weight: Bold;
+}
+
+.separationbox {
+	background-color: rgb(106, 112, 106);
+	padding: 1px;
+	border: 1px;
+	border-color: rgb(106, 112, 106);
+}
