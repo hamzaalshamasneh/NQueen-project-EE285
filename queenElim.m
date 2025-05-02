@@ -15,10 +15,15 @@ Author: Alina Matchette
 	1.0 - Original
 	1.1 - drasically reduce compute time by itterating over targets array rather than rows array in output
 	1.2 - reduce compute time further by eliminating for loop in output generation
+  1.3 - added error if function recives an input that sint a queen
 #}
 
 
 function queenElim = queenElim (coord, board)
+
+if board(coord(1),coord(2)) ~= 1
+  error('no queen at elimination position')
+ end
 
 localBoard = board; #casting global input to local variables as safety measure, generally redundant
 posit = coord; #posit, the current positon of the program in board matrix
