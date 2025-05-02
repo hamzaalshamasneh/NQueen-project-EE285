@@ -15,7 +15,7 @@ Author: Alina Matchette
 	1.0 - Original
 	1.1 - drasically reduce compute time by itterating over targets array rather than rows array in output
 	1.2 - reduce compute time further by eliminating for loop in output generation
-  1.3 - added error if function recives an input that sint a queen
+	1.3 - added error if function recives an input that isnt a queen
 #}
 
 
