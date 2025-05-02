@@ -1,0 +1,56 @@
+function [finalBoard, queenPositions] = MN_next(startCoord, queenNum)
+% Places queens on the board starting from the user’s inputed position,
+% and updates the board each time by removing invalid squares, and keeps
+% repeating the process until all queens are placed
+
+
+    queenPositions = startCoord;
+
+    %start placing the rest of the queens
+    for i = 2:queenNum
+        boardMatrix = ones(queenNum);
+
+        %apply queen elimination for all previously placed queens
+        for j = 1:size(queenPositions, 1)
+
+            %update the board to eliminate all squares threatened each queen
+            boardMatrix = queenElim(queenPositions(j, :), boardMatrix);
+        end
+        %setting to no queens are placed yet
+        placed = false;
+
+        %starting the search from top-left every time
+        for row = 1:queenNum
+            for col = 1:queenNum
+                %check if a queen already exists in this row or this column
+                if any(queenPositions(:,1) == row) || any(queenPositions(1,:) == col)
+                    continue;  %skip row or column if already used
+                end
+                %place the queen if the square is still marked as 1 (not threatened)
+                if boardMatrix(row, col) == 1
+                    queenPositions = [queenPositions; [row, col]];
+
+                    %place the queen
+                    placed = true;
+                    break; %stop searching once placed
+                end
+            end
+
+            % break the row loop if a queen was placed in the inner loop
+            if placed
+                break;
+            end
+        end
+
+        % exit the loop if there are no more valid squares
+        if ~placed
+            break;
+        end
+    end
+
+    %create the final board with only the queens positions marked
+    finalBoard = zeros(queenNum);
+    for k = 1:size(queenPositions, 1)
+        finalBoard(queenPositions(k,1), queenPositions(k,2)) = 1;
+    end
+end
