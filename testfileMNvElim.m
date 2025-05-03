@@ -1,25 +1,33 @@
 x = ones(4);
-numq =4;
 
-#{
-for i = 1:numq
-  for j = 1:numq
-  MN_next([i j],numq)
-  disp("passed");
+
+passcount  = 0;
+failcount = 0;
+
+for k = 1:12
+fprintf("\n\n\nTrying %d\n\n",k);
+for i = 1:k
+  for j = 1:k
+
+
+  tic
+  run = evalu( MN_next([i j],k));
+  toc
+  disp(run);
+  if run = "Pass"
+    passcount = passcount + 1;
+   else
+    failcount = failcount + 1;
+  endif
+
+
 end
 end
-#}
+disp("\ndone");
 
-run1 = queenElim([2 1], x);
+fprintf("passed %d times, failed %d times",passcount,failcount);
+end
+#run = MN_next([1 1],numq);
 
-run2 = queenElim([1 3], run1);
 
-run3 = queenElim([3 4], run2);
 
-run4 = queenElim([4 2], run3);
-
-disp("MN_next out")
-disp(MN_next([2 1],numq));
-
-disp("hand queen elim out")
-disp(run3);
