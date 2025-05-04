@@ -15,6 +15,7 @@ Version:
   1.2 - changed output to display pass and fail counts during runtime to provide more accurate information to user
   1.3 - updated output to display cordinates being etsted and improved readability with spacing
   1.4 - added text file output for log
+  1.5 - added more terminal output for log, and streamlined file write
 #}
 
 ## Author: Alina Matchette
@@ -37,22 +38,24 @@ fprintf(fileID,"\n\n\nTrying %d\n\n",k);
 for i = 1:k
   for j = 1:k
 
-fprintf(fileID,"\n\ntrying %d , point(%d , %d)\n", k, i , j)
+
 fprintf("\n\ntrying %d , point(%d , %d)\n",k, i , j)
  tic
   runa =  MN_next([i j],k);
+deltaT = toc
 
- fprintf(fileID,"Elapsed time is %f\n",toc);
  tic
   run = evalu(runa); #checking output from MN_next in evalU
-fprintf(fileID,"Elapsed time is %f\n",toc);
+deltaT2 = toc
+
 
   if run == "Pass" #updating pass or fail count
     passcount = passcount + 1;
    else
     failcount = failcount + 1;
   endif
-  fprintf(fileID,"passed %d times, failed %d times\n\n",passcount,failcount);
+  fprintf(fileID,"\n\ntrying %d , point(%d , %d)\nElapsed time is %f\nElapsed time is %f\npassed %d times, failed %d times\n\n",k, i , j,deltaT,deltaT2,passcount,failcount);
+
   fprintf("passed %d times, failed %d times\n\n",passcount,failcount);
 end
 end
