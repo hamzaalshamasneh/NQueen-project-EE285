@@ -12,6 +12,7 @@ Output
 Version:
   1.0 Original
   1.1 - addes stop and start positions for easier user experience
+  1.2 - changed output to display pass and fail counts during runtime to provide more accurate information to user
 #}
 
 ## Author: Alina Matchette
@@ -37,7 +38,7 @@ for i = 1:k
 
  tic
   runa =  MN_next([i j],k);
- disp("latteral")
+
  toc
  tic
   run = evalu(runa); #checking output from MN_next in evalU
@@ -48,13 +49,13 @@ for i = 1:k
    else
     failcount = failcount + 1;
   endif
-
+  fprintf("passed %d times, failed %d times\n",passcount,failcount);
 
 end
 end
 disp("\ndone"); #final display of passcount and failcount
 
-fprintf("passed %d times, failed %d times",passcount,failcount);
+
 end
 
 
