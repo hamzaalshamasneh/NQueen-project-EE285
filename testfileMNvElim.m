@@ -2,6 +2,8 @@
 Description:
   script that runs evaulU for every single board and starting position from startPoint to specified stopPoint, in terms of dimenstions of chessboard.
   Is used to test the output of MN_next to verify that it outputs as expected for every input
+  
+  requires making of outputfile.csv
 
 
 
@@ -16,6 +18,7 @@ Version:
   1.3 - updated output to display cordinates being etsted and improved readability with spacing
   1.4 - added text file output for log
   1.5 - added more terminal output for log, and streamlined file write
+  1.6 - outputs to csv file
 #}
 
 ## Author: Alina Matchette
@@ -30,11 +33,12 @@ failcount = 0;
 
 
 
+fileID = fopen('outputfile.csv','w');
+fprintf(fileID,"board_size,coordinates,MN_time,Eval_time,num_times_passed,num_times_failed\n\n");
 
-fileID = fopen('outputlog.txt','w');
+
 
 for k = startPoint:stopPoint #runs loop fdor every single board and cordinate on board of MN_next
-fprintf(fileID,"\n\n\nTrying %d\n\n",k);
 for i = 1:k
   for j = 1:k
 
@@ -54,12 +58,14 @@ deltaT2 = toc
    else
     failcount = failcount + 1;
   endif
-  fprintf(fileID,"\n\ntrying %d , point(%d , %d)\nElapsed time is %f\nElapsed time is %f\npassed %d times, failed %d times\n\n",k, i , j,deltaT,deltaT2,passcount,failcount);
+  fprintf(fileID,"\n%d,(%d %d),%f,%f,%d,%d\n",k, i , j,deltaT,deltaT2,passcount,failcount);
 
   fprintf("passed %d times, failed %d times\n\n",passcount,failcount);
+
+
 end
 end
-fprintf(fileID,"\ndone"); #final display of passcount and failcount
+fprintf(fileID,"\n\n");
 
 
 end
