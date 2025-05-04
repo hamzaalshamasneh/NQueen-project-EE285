@@ -14,13 +14,14 @@ Version:
   1.1 - addes stop and start positions for easier user experience
   1.2 - changed output to display pass and fail counts during runtime to provide more accurate information to user
   1.3 - updated output to display cordinates being etsted and improved readability with spacing
+  1.4 - added text file output for log
 #}
 
 ## Author: Alina Matchette
 ## Created: 2025-05-02
 
 startPoint = 1; #SET THESE to target start and stop dimensions
-stopPoint = 11;
+stopPoint = 20;
 
 
 passcount  = 0;
@@ -29,34 +30,35 @@ failcount = 0;
 
 
 
-
+fileID = fopen('outputlog.txt','w');
 
 for k = startPoint:stopPoint #runs loop fdor every single board and cordinate on board of MN_next
-fprintf("\n\n\nTrying %d\n\n",k);
+fprintf(fileID,"\n\n\nTrying %d\n\n",k);
 for i = 1:k
   for j = 1:k
 
-fprintf("\n\ntrying (%d , %d)\n", i , j)
+fprintf(fileID,"\n\ntrying %d , point(%d , %d)\n", k, i , j)
+fprintf("\n\ntrying %d , point(%d , %d)\n",k, i , j)
  tic
   runa =  MN_next([i j],k);
 
- toc
+ fprintf(fileID,"Elapsed time is %f\n",toc);
  tic
   run = evalu(runa); #checking output from MN_next in evalU
- toc
-  disp(run);
+fprintf(fileID,"Elapsed time is %f\n",toc);
+
   if run == "Pass" #updating pass or fail count
     passcount = passcount + 1;
    else
     failcount = failcount + 1;
   endif
+  fprintf(fileID,"passed %d times, failed %d times\n\n",passcount,failcount);
   fprintf("passed %d times, failed %d times\n\n",passcount,failcount);
-
 end
 end
-disp("\ndone"); #final display of passcount and failcount
+fprintf(fileID,"\ndone"); #final display of passcount and failcount
 
 
 end
 
-
+fclose(fileID);
